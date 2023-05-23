@@ -9,6 +9,7 @@ A simple modding tool for Dead Cells that allows modification and/or replacement
 - [x] Packaging "bare-minimum" mod packages based on modifications to
        `res.pak`.
 - [x] Starting either vanilla or modded Dead Cells with specific mods.
+- [ ] Save editor?
 - [ ] More efficient handling of modded launches - binary patching?
 - [ ] Game version compatibility checks
 - [ ] Mod compatability checks
