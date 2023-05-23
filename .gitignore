@@ -1,3 +1,4 @@
 *.log
 .did_setup
 *.pak
+*.zip

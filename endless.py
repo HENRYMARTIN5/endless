@@ -26,7 +26,7 @@ logger.info("Selected folder: " + folder_selected)
 
 # draw window
 root.title("Endless")
-root.geometry("250x250")
+root.geometry("400x500")
 root.resizable(False, False)
 
 def check_backup():
@@ -150,6 +150,24 @@ def start_vanilla():
     shutil.copyfile("backup/res.pak", "res.pak")
     os.system("start deadcells.exe")
     os.chdir(origDir)
+
+def unpack_cdb():
+    logger.info("Unpacking CastleDB...")
+    origDir = os.getcwd()
+    os.chdir(folder_selected)
+    os.system("ModTools\CDBTool.exe -Expand -outDir UnpackedCDB -refCDB UnpackedFiles/data.cdb")
+    logger.info("Unpacked CastleDB!")
+    os.chdir(origDir)
+    messagebox.showinfo("Done", "Unpacked CastleDB!")
+
+def repack_cdb():
+    logger.info("Repacking CastleDB...")
+    origDir = os.getcwd()
+    os.chdir(folder_selected)
+    os.system("ModTools\CDBTool.exe -Collapse -inDir UnpackedCDB -outCDB UnpackedFiles/data.cdb")
+    logger.info("Repacked CastleDB!")
+    os.chdir(origDir)
+    messagebox.showinfo("Done", "Repacked CastleDB!")
     
 # header
 tk.Label(root, text="Endless", font=("Arial", 20)).grid(row=0, column=5)
@@ -157,6 +175,8 @@ tk.Label(root, text="A simple modding utility for Dead Cells", font=("Arial", 10
 
 buttons = {
     "Unpack game files": unpack,
+    "Unpack CastleDB (Run after unpacking)": unpack_cdb,
+    "Repack CastleDB (Run before repacking)": repack_cdb,
     "Repack game files": repack,
     "Package mod": package,
     "Start game (Modded)": start_modded,
